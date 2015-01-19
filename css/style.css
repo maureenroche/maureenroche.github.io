@@ -16,13 +16,14 @@ table{
 	text-align: center;
 }
 
-td{height: 120px;cursor: pointer;}
+td{height: 120px;}
 
 /* HORIZONTAL */
 
 #table-head td{
 	width: 120px;
 	height: 65px;
+	cursor: pointer;
 }
 
 
@@ -50,6 +51,7 @@ td{height: 120px;cursor: pointer;}
 
 /* VERTICAL */
 
+#language1, #language2, #language3 {cursor: pointer;}
 
 /* CENTRE */
 
