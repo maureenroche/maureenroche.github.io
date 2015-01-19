@@ -1,0 +1,84 @@
+/* GENERAL */
+
+/*Font*/
+@import url(http://fonts.googleapis.com/css?family=Ubuntu);
+
+body{font-family: 'Ubuntu', sans-serif;}
+
+h2{font-size: 18px;}
+
+/*Champs caché*/
+.hidden{
+	display: none;
+}
+
+table{
+	text-align: center;
+}
+
+td{height: 120px}
+
+/* HORIZONTAL */
+
+#table-head td{
+	width: 120px;
+	height: 65px;
+}
+
+
+#frontend{
+	background-color: #FFF275;
+
+}
+
+#backend{
+	background-color: #FF8C42;
+}
+
+#database{
+	background-color: #FF3C38;
+}
+
+#mobile{
+	background-color: #A23E48;
+}
+
+#software{
+	background-color: #6C8EAD;
+}
+
+
+/* VERTICAL */
+
+
+/* CENTRE */
+
+#text{
+	width: 600px;
+	height: 500px;
+	background-color: #F4F2DF;
+}
+
+p{
+	text-align: justify;
+	width: 90%;
+	margin: 0 auto;
+	line-height: 25px;
+}
+
+pre>code{
+	float: left;
+}
+
+.framework{
+	width: 160px;
+	list-style: none;
+	border: 1px solid;
+	float: right;
+	padding: 0 10px 30px;
+	margin: 30px 10px 0 10px;
+	-webkit-border-radius: 20px;
+	border-radius: 10px;
+	line-height: 30px;
+}
+
