@@ -16,7 +16,7 @@ table{
 	text-align: center;
 }
 
-td{height: 120px}
+td{height: 120px;cursor: pointer;}
 
 /* HORIZONTAL */
 
@@ -36,7 +36,7 @@ td{height: 120px}
 }
 
 #database{
-	background-color: #FF3C38;
+	background-color: #E05855;
 }
 
 #mobile{
