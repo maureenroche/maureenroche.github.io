@@ -1,25 +1,58 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <style type="text/css">
-      html, body, #map-canvas {width: 100%; height: 100%; margin: 0; padding: 0;}
-    </style>
-    <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAD2ZcY2dauXILrJwX7BwQjmU2FM39U8aw">
-    </script>
-    <script type="text/javascript">
-      function initialize() {
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <title>English Adresses In Bordeaux</title>
+  <style type="text/css">
+    html, body, #map-canvas {width: 100%; height: 100%; margin: 0; padding: 0;}
+  </style>
+  <script type="text/javascript"
+  src="https://maps.googleapis.com/maps/api/js?sensor=SET_TO_TRUE_OR_FALSE">
+</script>
+<script type="text/javascript">
+  function initialize() {
+
+        //Position de la map
         var mapOptions = {
-          center: { lat: -34.397, lng: 150.644},
-          zoom: 8
+          center: { lat: 44.8404400, lng: -0.5805000},
+          zoom: 13
         };
+
         var map = new google.maps.Map(document.getElementById('map-canvas'),
-            mapOptions);
-      }
-      google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
-  </head>
-  <body>
-<div id="map-canvas"></div>
-  </body>
+          mapOptions);
+
+        //marker Maison
+        var marker=new google.maps.Marker({
+          position: { lat: 44.787212, lng: -0.610486},
+          map: map,
+          title:"Maison!",
+        });
+
+        var infowindow = new google.maps.InfoWindow({
+          content:"C'est ma maison"
+        });
+
+        //marker IUT
+        var marker=new google.maps.Marker({
+          position: { lat: 44.830521, lng: -0.562199},
+          map: map,
+          title:"IUT!",
+        });
+
+//On fixe les markers sur la map
+marker.setMap(map);
+
+//On active les fenetres pop up lors du click sur le marker
+google.maps.event.addListener(marker, 'click', function() {
+  infowindow.open(map,marker);
+});
+
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+</head>
+<body>
+  <div id="map-canvas"></div>
+</body>
 </html>
