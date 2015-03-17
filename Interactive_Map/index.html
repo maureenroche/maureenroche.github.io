@@ -11,48 +11,85 @@
   src="https://maps.googleapis.com/maps/api/js?sensor=SET_TO_TRUE_OR_FALSE">
 </script>
 <script type="text/javascript">
-  function initialize() {
 
-        //Position de la map
-        var mapOptions = {
-          center: { lat: 44.8404400, lng: -0.5805000},
-          zoom: 13
-        };
+//Initialisation de la carte
+function initialize() {
+  var mapOptions = {
+    center: { lat: 44.8404400, lng: -0.5805000},
+    zoom: 13
+  }
+  var map = new google.maps.Map(document.getElementById('map-canvas'),
+    mapOptions);
 
-        var map = new google.maps.Map(document.getElementById('map-canvas'),
-          mapOptions);
+  setMarkers(map,resto,pub);
+}
 
-        //marker Maison
-        var marker=new google.maps.Marker({
-          position: { lat: 44.787212, lng: -0.610486},
-          map: map,
-          title:"Maison!",
-        });
+//Data
 
-        var infowindow = new google.maps.InfoWindow({
-          content:"C'est ma maison"
-        });
+ var pub = [
+  ['pub1', 44.837299, -0.570181],
+  ['pub2', 44.839444, -0.570202],
+  ['pub3', 44.844952, -0.576833],
+  ['pub4', 44.842867, -0.589214],
+ ];
 
-        //marker IUT
-        var marker=new google.maps.Marker({
-          position: { lat: 44.830521, lng: -0.562199},
-          map: map,
-          title:"IUT!",
-        });
+ var resto = [
+  ['resto1', 44.840038, -0.600737],
+  ['resto2', 44.828655, -0.565718],
+  ['resto3', 44.846123, -0.576361],
+ ];
 
-//On fixe les markers sur la map
-marker.setMap(map);
+/*
+var infowindow = new google.maps.InfoWindow({
+          content:"C'est mon école"
+        });*/
 
-//On active les fenetres pop up lors du click sur le marker
-google.maps.event.addListener(marker, 'click', function() {
-  infowindow.open(map,marker);
-});
+
+ function setMarkers(map, locations) {
+  // Add markers to the map
+
+  for (var i = 0; i < locations.length; i++) {
+    var resto = locations[i];
+    var myLatLng = new google.maps.LatLng(resto[1], resto[2]);
+    var marker = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      title: resto[0],
+    });
+  }
+
+  for (var j = 0; j < locations.length; j++) {
+    var pub = locations[j];
+    var myLatLng = new google.maps.LatLng(pub[1], pub[2]);
+    var marker = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      title: pub[0],
+    });
+  }
 
 }
+ /*      
+//On active les fenetres pop up lors du click sur le marker
+google.maps.event.addListener(home, 'click', function() {
+  infowindow.open(map,home);
+});
+//On active les fenetres pop up lors du click sur le marker
+google.maps.event.addListener(school, 'click', function() {
+  infowindow.open(map,school);
+});*/
+
 google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 </head>
 <body>
-  <div id="map-canvas"></div>
+  <div id="map-canvas">
+  <div class="siderbarmap">
+        <ul>
+          <input id="monumentoCheckbox" type="checkbox" onclick="toggleGroup('pub')" checked="checked"></input>
+          <input id="museusCheckbox" type="checkbox" onclick="toggleGroup('resto')" checked="checked"></input>
+        </ul>
+      </div>
+  </div>
 </body>
 </html>
