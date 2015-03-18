@@ -1,0 +1,60 @@
+html, body, #map-canvas {
+  height: 100%;
+  margin: 0px;
+  padding: 0px
+}
+#panel {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  margin-left: -180px;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+}
+
+.content{
+  font-size: 15px;
+  font-family: 'Droid Sans', sans-serif;
+}
+
+.content h1{
+  font-family: 'Pacifico', cursive;
+  font-size: 20px;
+  margin-bottom: 0;
+}
+
+.content h2{
+  font-family: 'Droid Sans', sans-serif;
+  font-weight: normal;
+  font-size: 15px;
+  margin-top: 5px;
+  margin-bottom: 25px;
+}
+
+.italique{
+  font-style: italic;
+  text-align: left;
+}
+
+.inline p{
+  display: inline;
+}
+
+.content ul{
+  padding-top: 15px;
+}
+
+.content ul li{
+  display: inline;
+}
+
+.content img{
+  width: 25px;
+}
+
+.content ul img{
+  width: 30px;
+  padding-right: 10px;
+}

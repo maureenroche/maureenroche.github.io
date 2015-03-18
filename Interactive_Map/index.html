@@ -3,24 +3,8 @@
 <head>
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
   <meta charset="utf-8">
-  <title>English Adresses In Bordeaux</title>
-  <style type="text/css">
-    html, body, #map-canvas {
-      height: 100%;
-      margin: 0px;
-      padding: 0px
-    }
-    #panel {
-      position: absolute;
-      top: 5px;
-      left: 50%;
-      margin-left: -180px;
-      z-index: 5;
-      background-color: #fff;
-      padding: 5px;
-      border: 1px solid #999;
-    }
-  </style>
+  <title>British adresses in Bordeaux</title>
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
   <script type="text/javascript"
   src="https://maps.googleapis.com/maps/api/js?sensor=SET_TO_TRUE_OR_FALSE">
 </script>
@@ -35,14 +19,19 @@ function initialize() {
   var map = new google.maps.Map(document.getElementById('map-canvas'),
     mapOptions);
 
-  setMarkers(map, selectMarker() );
+  clearMarkers()
+
+  setMarkers(map, refreshMarkersArray());
+  
 }
 
 
 //Data
 
+var markersArray = [];
+
 var pub = [
-['Frog & Rosbif', 44.837973, -0.568056],
+['Frog-Rosbif', 44.837973, -0.568056],
 ['pub2', 44.839444, -0.570202],
 ['pub3', 44.844952, -0.576833],
 ['pub4', 44.842867, -0.589214],
@@ -58,7 +47,6 @@ var resto = [
 
 // Add markers to the map
 function setMarkers(map, locations) {
-
   for (var i = 0; i < locations.length; i++) {
     var location = locations[i];
     var myLatLng = new google.maps.LatLng(location[1], location[2]);
@@ -67,38 +55,50 @@ function setMarkers(map, locations) {
       map: map,
       title: location[0],
     });
+    markersArray.push(marker);
   }
-
-}
-
-//Sélectioner les markers par catégories
-function selectMarker (){
-  var markers = [];
-  if (check) markers = markers.concat(pub);
-  if (check) markers = markers.concat(resto);
-  return markers;
 }
 
 //Vérifier si les boutons ont été cochés
-function check (){
-  if (resto.checked == false) {
-    return false
-  };
+function checkPub (){
+  return document.getElementById('pubCheckbox').checked;
+}
 
-  if (resto.checked == true) {
-    return true
-  };
+function checkResto (){
+   return document.getElementById('restoCheckbox').checked;
+}
+
+//Sélectioner les markers par catégories
+function refreshMarkersArray (){
+  var currentMarkers = [];
+  if (checkPub() == true) currentMarkers = currentMarkers.concat(pub);
+  if (checkResto() == true) currentMarkers = currentMarkers.concat(resto);
+  return currentMarkers;
+}
+
+//Clean Markers
+function clearMarkers() {
+  for (var i = 0; i < markersArray.length; i++ ) {
+   markersArray[i].setMap(null);
+  }
+  markersArray.length = 0;
+}
+
+function makeInfoWindowEvent(map, infowindow, marker) {
+  google.maps.event.addListener(marker, 'click', function() {
+    infowindow.open(map, marker);
+  });
 }
 
 
-
 google.maps.event.addDomListener(window, 'load', initialize);
+
 </script>
 </head>
 <body>
   <div id="panel">
-    <input id="pubCheckbox" type="checkbox" onclick="check()"></input>
-    <input id="restoCheckbox" type="checkbox" onclick="check()"></input>
+    <label>Pub</label><input checked id="pubCheckbox" type="checkbox" onclick="initialize()"></input>
+    <label>Restaurant</label><input checked id="restoCheckbox" type="checkbox" onclick="initialize()"></input>
   </div>
   <div id="map-canvas"></div>
 </body>
